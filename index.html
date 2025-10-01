@@ -4,11 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OddBuddy Notes</title>
+    <title>OddBuddy Notes - Your Daily Tech Insights</title>
+    <!-- Social media share -->
+    <meta property="og:title" content="OddBuddy Notes - Your Daily Tech Insights">
+    <meta property="og:site_name" content="OddBuddy Notes">
+    <meta property="og:url" content="https://notes.oddbuddy.com" />
+    <meta property="og:description" content="OddBuddy Notes - Your Daily Tech Insights">
+    <meta property="og:type" content="">
+    <meta property="og:image" content="./assets/m/ob32.png">
+    <meta name="twitter:card" content="OddBuddy Notes - Your Daily Tech Insights" />
+    <meta name="twitter:site" content="OddBuddy Notes" />
+    <meta name="twitter:creator" content="OddBuddy Notes" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/m/ob192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/m/ob32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/m/ob16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="msapplication-TileColor" content="#a682ae">
+    <meta name="theme-color" content="#a682ae">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Product+Sans&family=Google+Sans+Display:ital@0;1&family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        as="style">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Product+Sans&family=Google+Sans+Display:ital@0;1&family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="./libs/styles.css">
 </head>
 
 <body>
-    Initial Page
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="./assets/logo.png" alt="OddBuddy Notes">
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <span id="themeIcon">🌙</span> Dark Mode
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1><span class="light-purple">Welcome to</span> <span class="dark-purple">OddBuddy Notes</span></h1>
+        <p>Discover the latest insights, tutorials, and trends in technology, design, and development.</p>
+    </section>
+
+    <section class="blog-grid">
+        <a href="./flutter_discrete_slider.html" class="blog-card">
+            <!-- <div class="blog-image">
+            </div> -->
+            <img class="blog-image" src="./assets/images/discrete_slider.png" alt="">
+            <div class="blog-content">
+                <div class="blog-meta">October 1, 2025 • 5 min read</div>
+                <h2>Beautiful Step Sliders in Flutter</h2>
+                <p>Implement customizable discrete sliders in your Flutter apps. Flutter Development
+                </p>
+                <span class="read-more">Read More →</span>
+            </div>
+        </a>
+    </section>
+
+    <div class="pagination">
+        <a href="#" class="disabled">← Previous</a>
+        <span class="active">1</span>
+        <!-- <a href="#" class="disabled">2</a>
+        <a href="#" class="disabled">3</a>
+        <a href="#" class="disabled">4</a>
+        <a href="#" class="disabled">5</a> -->
+        <a href="#" class="disabled">Next →</a>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> OddBuddy. All rights reserved.</p>
+    </footer>
+
+    <script src="../libs/scripts.js"></script>
 </body>
 
 </html>
