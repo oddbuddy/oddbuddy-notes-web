@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Web Development - OddBuddy Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-content: border-box;
+        }
+
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --border-color: #a682ae;
+            --accent: #a682ae;
+            --card-bg: #ffffff;
+            --hover-bg: #f3eef4;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #604b66;
+            --accent: #a682ae;
+            --card-bg: #1e293b;
+            --hover-bg: #334155;
+        }
+
+        body {
+            font-family: 'Product Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.8;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-primary);
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .back-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .back-link:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Product Sans', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .article-header {
+            max-width: 800px;
+            margin: 60px auto;
+            margin-top: 140px;
+            padding: 0 20px;
+        }
+
+        .article-meta {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .article-header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .article-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--border-color) 100%);
+            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .article-content h2 {
+            font-size: 32px;
+            margin: 40px 0 20px;
+            font-weight: 700;
+        }
+
+        .article-content h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            font-weight: 700;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .highlight-box {
+            background-color: var(--hover-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .code-block {
+            background-color: var(--card-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        footer {
+            border-top: 2px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                margin-top: 120px;
+            }
+
+            .article-header h1 {
+                font-size: 32px;
+            }
+
+            .article-subtitle {
+                font-size: 18px;
+            }
+
+            .featured-image {
+                height: 250px;
+                font-size: 80px;
+            }
+
+            .article-content h2 {
+                font-size: 24px;
+            }
+
+            .article-content h3 {
+                font-size: 20px;
+            }
+
+            .article-content p,
+            .article-content li {
+                font-size: 16px;
+            }
+
+            .nav-right {
+                gap: 10px;
+            }
+
+            .back-link,
+            .theme-toggle {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .logo img {
+                height: 32px;
+            }
+
+            .highlight-box,
+            .code-block {
+                padding: 20px;
+                font-size: 14px;
+            }
+
+            nav {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-header h1 {
+                font-size: 26px;
+            }
+
+            .article-subtitle {
+                font-size: 16px;
+            }
+
+            .article-meta {
+                font-size: 12px;
+            }
+
+            .featured-image {
+                height: 200px;
+                font-size: 60px;
+            }
+
+            .article-content h2 {
+                font-size: 20px;
+            }
+
+            .article-content h3 {
+                font-size: 18px;
+            }
+
+            .article-content p,
+            .article-content li {
+                font-size: 15px;
+            }
+
+            .back-link,
+            .theme-toggle {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .logo img {
+                height: 28px;
+            }
+
+            .highlight-box,
+            .code-block {
+                padding: 15px;
+                font-size: 13px;
+            }
+
+            .article-content {
+                padding: 0 15px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .article-header h1 {
+                font-size: 40px;
+            }
+
+            .featured-image {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="../assets/logo.png" alt="OddBuddy Notes">
+            </a>
+            <div class="nav-right">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> Dark Mode
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <div class="article-meta">January 15, 2025 • 5 min read • Web Development</div>
+            <h1>Getting Started with Web Development in 2025</h1>
+            <p class="article-subtitle">Your complete guide to beginning your journey as a web developer with the latest
+                tools and best practices.</p>
+        </div>
+
+        <div class="article-content">
+            <div class="featured-image">💻</div>
+
+            <p>Web development has never been more exciting or accessible than it is today. Whether you're looking to
+                switch careers, build your own projects, or simply learn a new skill, this guide will help you navigate
+                the essential tools and technologies you need to get started.</p>
+
+            <h2>Why Learn Web Development?</h2>
+
+            <p>The demand for web developers continues to grow exponentially. Every business needs a digital presence,
+                and skilled developers are essential to creating and maintaining these online experiences. Beyond career
+                opportunities, web development gives you the power to bring your ideas to life and share them with the
+                world.</p>
+
+            <div class="highlight-box">
+                <p><strong>Did you know?</strong> There are over 1.8 billion websites on the internet today, and that
+                    number is growing every second. The opportunities in web development are virtually limitless.</p>
+            </div>
+
+            <h2>Essential Technologies to Learn</h2>
+
+            <h3>1. HTML - The Foundation</h3>
+
+            <p>HTML (HyperText Markup Language) is the backbone of every website. It provides the structure and content
+                that browsers display. Learning HTML is like learning the alphabet before you can write sentences.</p>
+
+            <div class="code-block">
+                &lt;!DOCTYPE html&gt;
+                &lt;html&gt;
+                &lt;head&gt;
+                &lt;title&gt;My First Page&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                &lt;h1&gt;Hello World!&lt;/h1&gt;
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </div>
+
+            <h3>2. CSS - The Styling</h3>
+
+            <p>CSS (Cascading Style Sheets) makes websites beautiful. It controls colors, layouts, fonts, and
+                animations. Modern CSS is incredibly powerful, allowing you to create responsive designs that work on
+                any device.</p>
+
+            <h3>3. JavaScript - The Interactivity</h3>
+
+            <p>JavaScript brings websites to life with interactivity. From simple button clicks to complex web
+                applications, JavaScript is the programming language that runs in every browser.</p>
+
+            <h2>Learning Path Recommendations</h2>
+
+            <p>Here's a structured approach to learning web development:</p>
+
+            <ul>
+                <li>Start with HTML and CSS basics - spend 2-3 weeks mastering these fundamentals</li>
+                <li>Build simple static websites to practice your skills</li>
+                <li>Learn JavaScript fundamentals - variables, functions, and control flow</li>
+                <li>Practice building interactive features like forms and animations</li>
+                <li>Explore responsive design principles and mobile-first development</li>
+                <li>Learn about web accessibility and performance optimization</li>
+                <li>Choose a framework or library (React, Vue, or Angular) once you're comfortable with vanilla
+                    JavaScript</li>
+            </ul>
+
+            <h2>Tools You'll Need</h2>
+
+            <p>Getting started with web development doesn't require expensive tools. Here's what you need:</p>
+
+            <ul>
+                <li><strong>Text Editor:</strong> VS Code is free and incredibly popular among developers</li>
+                <li><strong>Browser:</strong> Chrome, Firefox, or Edge with developer tools</li>
+                <li><strong>Version Control:</strong> Git for tracking your code changes</li>
+                <li><strong>Terminal:</strong> Command line interface for running tools and commands</li>
+            </ul>
+
+            <h2>Best Practices for Beginners</h2>
+
+            <p>As you start your journey, keep these principles in mind:</p>
+
+            <div class="highlight-box">
+                <p><strong>Code every day:</strong> Consistency is more important than intensity. Even 30 minutes of
+                    daily practice will yield better results than sporadic marathon sessions.</p>
+            </div>
+
+            <p>Don't try to learn everything at once. Master the fundamentals before moving to advanced topics. Build
+                real projects, even simple ones, to reinforce your learning. Join developer communities online where you
+                can ask questions and learn from others.</p>
+
+            <h2>Moving Forward</h2>
+
+            <p>Web development is a journey, not a destination. Technologies evolve, new tools emerge, and best
+                practices change. The key is to build a strong foundation and cultivate a love for continuous learning.
+            </p>
+
+            <p>Remember, every expert developer was once a beginner. The websites and applications you admire were built
+                by people who started exactly where you are now. Take that first step, write your first line of code,
+                and join the vibrant community of web developers shaping the digital world.</p>
+
+            <p>Your journey starts today. What will you build?</p>
+        </div>
+    </article>
+
+    <footer>
+        <p>&copy; 2025 OddBuddy Notes. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        const header = document.querySelector('header');
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeButton(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        });
+
+        function updateThemeButton(theme) {
+            if (theme === 'dark') {
+                themeIcon.textContent = '☀️';
+                themeToggle.childNodes[1].textContent = ' Light Mode';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeToggle.childNodes[1].textContent = ' Dark Mode';
+            }
+        }
+
+        // Header hide/show on scroll
+        let lastScroll = 0;
+        const scrollThreshold = 5;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (Math.abs(currentScroll - lastScroll) < scrollThreshold) {
+                return;
+            }
+
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+
+</html>
