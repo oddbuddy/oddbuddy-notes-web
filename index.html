@@ -5,6 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OddBuddy Notes - Your Daily Tech Insights</title>
+    <!-- Social media share -->
+    <meta property="og:title" content="OddBuddy Notes - Your Daily Tech Insights">
+    <meta property="og:site_name" content="OddBuddy Notes">
+    <meta property="og:url" content="https://notes.oddbuddy.com" />
+    <meta property="og:description" content="OddBuddy Notes - Your Daily Tech Insights">
+    <meta property="og:type" content="">
+    <meta property="og:image" content="./assets/m/ob32.png">
+    <meta name="twitter:card" content="OddBuddy Notes - Your Daily Tech Insights" />
+    <meta name="twitter:site" content="OddBuddy Notes" />
+    <meta name="twitter:creator" content="OddBuddy Notes" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/m/ob192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/m/ob32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/m/ob16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="msapplication-TileColor" content="#a682ae">
+    <meta name="theme-color" content="#a682ae">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload"
@@ -33,63 +51,15 @@
     </section>
 
     <section class="blog-grid">
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">💻</div>
+        <a href="./flutter_discrete_slider.html" class="blog-card">
+            <!-- <div class="blog-image">
+            </div> -->
+            <img class="blog-image" src="./assets/images/discrete_slider.png" alt="">
             <div class="blog-content">
-                <div class="blog-meta">January 15, 2025 • 5 min read</div>
-                <h2>Getting Started with Web Development in 2025</h2>
-                <p>Learn the essential tools and technologies you need to become a successful web developer this year.
+                <div class="blog-meta">October 1, 2025 • 5 min read</div>
+                <h2>Beautiful Step Sliders in Flutter</h2>
+                <p>Implement customizable discrete sliders in your Flutter apps. Flutter Development
                 </p>
-                <span class="read-more">Read More →</span>
-            </div>
-        </a>
-
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">🎨</div>
-            <div class="blog-content">
-                <div class="blog-meta">January 12, 2025 • 7 min read</div>
-                <h2>Modern UI Design Principles</h2>
-                <p>Explore the key principles that make modern interfaces intuitive, accessible, and beautiful.</p>
-                <span class="read-more">Read More →</span>
-            </div>
-        </a>
-
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">🚀</div>
-            <div class="blog-content">
-                <div class="blog-meta">January 10, 2025 • 6 min read</div>
-                <h2>Deploying Your First Web Application</h2>
-                <p>A step-by-step guide to taking your web app from localhost to production deployment.</p>
-                <span class="read-more">Read More →</span>
-            </div>
-        </a>
-
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">📱</div>
-            <div class="blog-content">
-                <div class="blog-meta">January 8, 2025 • 8 min read</div>
-                <h2>Responsive Design Best Practices</h2>
-                <p>Master the art of creating websites that look great on any device, from mobile to desktop.</p>
-                <span class="read-more">Read More →</span>
-            </div>
-        </a>
-
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">⚡</div>
-            <div class="blog-content">
-                <div class="blog-meta">January 5, 2025 • 4 min read</div>
-                <h2>Optimizing Website Performance</h2>
-                <p>Discover practical techniques to make your websites faster and improve user experience.</p>
-                <span class="read-more">Read More →</span>
-            </div>
-        </a>
-
-        <a href="detail.html" class="blog-card">
-            <div class="blog-image">🔒</div>
-            <div class="blog-content">
-                <div class="blog-meta">January 3, 2025 • 9 min read</div>
-                <h2>Web Security Fundamentals</h2>
-                <p>Learn the essential security practices every web developer should implement in their projects.</p>
                 <span class="read-more">Read More →</span>
             </div>
         </a>
@@ -98,18 +68,18 @@
     <div class="pagination">
         <a href="#" class="disabled">← Previous</a>
         <span class="active">1</span>
-        <a href="#" class="disabled">2</a>
+        <!-- <a href="#" class="disabled">2</a>
         <a href="#" class="disabled">3</a>
         <a href="#" class="disabled">4</a>
-        <a href="#" class="disabled">5</a>
+        <a href="#" class="disabled">5</a> -->
         <a href="#" class="disabled">Next →</a>
     </div>
 
     <footer>
-        <p>&copy; 2025 OddBuddy. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> OddBuddy. All rights reserved.</p>
     </footer>
 
-    <script src="./libs/scripts.js"></script>
+    <script src="../libs/scripts.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Creating Beautiful Step Sliders in Flutter - OddBuddy Notes</title>
+    <!-- Social media share -->
+    <meta property="og:title" content="Step Sliders in Flutter - OddBuddy Notes">
+    <meta property="og:site_name" content="OddBuddy Notes">
+    <meta property="og:url" content="https://notes.oddbuddy.com" />
+    <meta property="og:description" content="Creating Beautiful Step Sliders in Flutter - OddBuddy Notes">
+    <meta property="og:type" content="">
+    <meta property="og:image" content="./assets/m/ob32.png">
+    <meta name="twitter:card" content="Creating Beautiful Step Sliders in Flutter - OddBuddy Notes" />
+    <meta name="twitter:site" content="OddBuddy Notes" />
+    <meta name="twitter:creator" content="OddBuddy Notes" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/m/ob192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/m/ob32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/m/ob16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="msapplication-TileColor" content="#a682ae">
+    <meta name="theme-color" content="#a682ae">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Product+Sans&family=Google+Sans+Display:ital@0;1&family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        as="style">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Product+Sans&family=Google+Sans+Display:ital@0;1&family=Google+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="./libs/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="./index.html" class="logo">
+                <img src="./assets/logo.png" alt="OddBuddy Notes">
+            </a>
+            <div class="nav-right">
+                <a href="./index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">
+                    <span id="themeIcon">🌙</span> Dark Mode
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <article>
+        <div class="article-header">
+            <div class="article-meta">October 1, 2025 • 8 min read • Flutter Development</div>
+            <h1>Creating Beautiful Step Sliders in Flutter with Discrete Slider</h1>
+            <p class="article-subtitle">Learn how to implement customizable discrete sliders in your Flutter apps with
+                smooth animations and intuitive controls.</p>
+        </div>
+
+        <div class="article-content">
+            <!-- <div class="featured-image"> -->
+            <img class="featured-image" src="./assets/images/discrete_slider.png" alt="" srcset="">
+            <!-- </div> -->
+
+            <p>When building user interfaces, sometimes you need more than just a continuous slider. Whether you're creating a volume control with specific levels, a rating system, or a progress indicator with distinct steps, discrete sliders are the perfect solution. Today, I'll show you how to use the Discrete Slider package to create beautiful, customizable step-based sliders in Flutter.</p>
+
+            <h2>Why Use Discrete Sliders?</h2>
+
+            <p>Traditional sliders offer continuous values, but many real-world scenarios require discrete steps. Think about volume controls with Low, Medium, and High settings, or rating systems with specific star levels. Discrete sliders provide a better user experience for these cases by snapping to predefined values and showing clear visual feedback.</p>
+
+            <div class="highlight-box">
+                <p><strong>Key Benefits:</strong> Discrete sliders offer precise control, clear visual feedback, and better usability for step-based inputs. They're perfect for settings, ratings, progress tracking, and any scenario where you need specific value selections.</p>
+            </div>
+
+            <h2>Getting Started</h2>
+
+            <p>First, add the Discrete Slider package to your Flutter project. Open your pubspec.yaml file and add the dependency:</p>
+
+            <div class="code-block">dependencies:
+  discrete_slider: ^1.0.0</div>
+
+            <p>Then run the following command in your terminal to install the package:</p>
+
+            <div class="code-block">flutter pub get</div>
+
+            <p>Now you're ready to start building beautiful discrete sliders!</p>
+
+            <h2>Basic Implementation</h2>
+
+            <p>Let's start with the simplest implementation. Here's how to create a basic discrete slider with three steps and custom labels:</p>
+
+            <div class="code-block">import 'package:discrete_slider/discrete_slider.dart';
+
+DiscreteSlider(
+  steps: 2,
+  labels: ["Low", "Medium", "High"],
+  onChanged: (value) {
+    print("Selected step: $value");
+  },
+)</div>
+
+            <p>This creates a slider with three positions (0, 1, and 2). The labels parameter provides clear text descriptions for each step, making it immediately obvious to users what each position represents.</p>
+
+            <h2>Using Controllers for Programmatic Control</h2>
+
+            <p>One of the most powerful features of the Discrete Slider package is the ability to control the slider programmatically using a controller. This is essential when you need to update the slider value from your code, such as loading saved preferences or responding to other UI elements.</p>
+
+            <div class="code-block">class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State&lt;MyWidget&gt; {
+  late DiscreteSliderController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = DiscreteSliderController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        DiscreteSlider(
+          controller: _controller,
+          steps: 4,
+          onChanged: (value) {
+            print("Step changed to: $value");
+          },
+        ),
+        ElevatedButton(
+          onPressed: () => _controller.moveTo(2),
+          child: Text("Move to Step 2"),
+        ),
+      ],
+    );
+  }
+}</div>
+
+            <p>The controller gives you complete programmatic control. You can move the slider to any step, get the current step value, and even listen for changes. Don't forget to dispose of the controller when you're done to prevent memory leaks.</p>
+
+            <h2>Customization Options</h2>
+
+            <p>The real power of the Discrete Slider package lies in its extensive customization options. You can tailor every aspect of the slider to match your app's design language.</p>
+
+            <h3>Colors and Styling</h3>
+
+            <div class="code-block">DiscreteSlider(
+  steps: 6,
+  onChanged: (value) {
+    print("Selected: $value");
+  },
+  trackWidth: 10,
+  labelTextStyle: TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  ),
+  inActiveColor: Colors.red.shade300,
+  inActiveTrackColor: Colors.grey.shade300,
+  activeTrackColor: Colors.red,
+  activeColor: Colors.red.shade900,
+  labelBorderRadius: 12,
+  height: 32,
+)</div>
+
+            <p>You can customize the active and inactive colors for both the track and the step indicators. The trackWidth property controls the thickness of the connecting line, while labelBorderRadius creates rounded corners for the label backgrounds.</p>
+
+            <h2>Real-World Use Cases</h2>
+
+            <h3>Volume Control</h3>
+
+            <p>Create an intuitive volume control with distinct levels:</p>
+
+            <div class="code-block">DiscreteSlider(
+  steps: 3,
+  labels: ["Off", "Low", "Medium", "High"],
+  onChanged: (level) {
+    print("Volume level: $level");
+  },
+  trackWidth: 8,
+  height: 40,
+  labelBorderRadius: 20,
+  activeTrackColor: Colors.green,
+)</div>
+
+            <h3>Progress Tracking</h3>
+
+            <p>Display project completion stages with clear visual feedback:</p>
+
+            <div class="code-block">DiscreteSlider(
+  controller: _progressController,
+  steps: 4,
+  labels: ["Start", "25%", "50%", "75%", "Complete"],
+  onChanged: (_) {}, // Read-only mode
+  activeTrackColor: Colors.blue,
+  inActiveTrackColor: Colors.grey.shade300,
+)</div>
+
+            <h3>Rating System</h3>
+
+            <p>Build an engaging rating system with descriptive labels:</p>
+
+            <div class="code-block">DiscreteSlider(
+  steps: 4,
+  labels: ["Poor", "Fair", "Good", "Great", "Excellent"],
+  onChanged: (rating) {
+    print("Rating: ${rating + 1} stars");
+  },
+  activeTrackColor: Colors.amber,
+  labelTextStyle: TextStyle(
+    fontSize: 16,
+    color: Colors.amber.shade700,
+  ),
+)</div>
+
+            <h2>Complete Example</h2>
+
+            <p>Here's a comprehensive example showing multiple sliders with different configurations in a single screen:</p>
+
+            <div class="code-block">class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  DiscreteSliderController _controller = DiscreteSliderController();
+  DiscreteSliderController _sliderController = DiscreteSliderController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _sliderController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Discrete Slider Demo'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: &lt;Widget&gt;[
+            // Basic slider with labels
+            DiscreteSlider(
+              steps: 2,
+              labels: ["Low", "Medium", "High"],
+              onChanged: (value) {
+                print("Basic slider: $value");
+              },
+              labelTextStyle: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 30),
+            
+            // Customized slider
+            DiscreteSlider(
+              controller: _controller,
+              steps: 4,
+              onChanged: (value) {
+                print("Value: $value");
+              },
+              trackWidth: 20,
+              inActiveTrackColor: Colors.grey.shade300,
+              activeTrackColor: Colors.grey.shade500,
+              labelBorderRadius: 18,
+            ),
+            SizedBox(height: 20),
+            
+            ElevatedButton(
+              onPressed: () => _controller.moveTo(2),
+              child: Text("Move to Step 2"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</div>
+
+            <h2>Best Practices</h2>
+
+            <p>When implementing discrete sliders in your Flutter apps, keep these best practices in mind:</p>
+
+            <ul>
+                <li><strong>Use meaningful labels:</strong> Always provide clear, descriptive labels that help users understand what each step represents</li>
+                <li><strong>Choose appropriate step counts:</strong> Too many steps can overwhelm users, while too few might not provide enough granularity. Aim for 3-7 steps for most use cases</li>
+                <li><strong>Dispose controllers properly:</strong> Always dispose of controllers in the dispose method to prevent memory leaks</li>
+                <li><strong>Match your design system:</strong> Customize colors and styling to match your app's overall design language</li>
+                <li><strong>Provide visual feedback:</strong> Use distinct colors for active and inactive states to make the current selection clear</li>
+                <li><strong>Consider touch targets:</strong> Ensure the slider and its indicators are large enough for comfortable touch interaction</li>
+            </ul>
+
+            <h2>Key Features Summary</h2>
+
+            <div class="highlight-box">
+                <p><strong>What makes Discrete Slider special:</strong> Specific number of steps, custom labels for each step, highly customizable colors and styles, controller support for programmatic control, touch-friendly with tap and drag gestures, and lightweight with minimal dependencies.</p>
+            </div>
+
+            <h2>Moving Forward</h2>
+
+            <p>The Discrete Slider package provides a powerful, flexible solution for implementing step-based sliders in Flutter. Whether you're building a settings screen, a rating system, or a progress tracker, this package offers the customization and control you need.</p>
+
+            <p>The package is actively maintained and available on pub.dev. You can find the complete source code and additional examples on GitHub. If you find it useful, consider giving it a star on GitHub and a like on pub.dev to support the developer.</p>
+
+            <p>Ready to add beautiful discrete sliders to your Flutter app? Install the package today and start creating intuitive, step-based controls that your users will love!</p>
+
+            <div class="highlight-box">
+                <p><strong>Get Started:</strong> Visit <a href="https://pub.dev/packages/discrete_slider" target="_blank" style="color: var(--accent);">pub.dev/packages/discrete_slider</a> for the latest version and documentation. Check out the <a href="https://github.com/oddbuddy/flutter_discrete_slider" target="_blank" style="color: var(--accent);">GitHub repository</a> for source code and examples.</p>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <p>&copy; <span id="year"></span> OddBuddy. All rights reserved.</p>
+    </footer>
+
+    <script src="./libs/scripts.js"></script>
+</body>
+
+</html>
